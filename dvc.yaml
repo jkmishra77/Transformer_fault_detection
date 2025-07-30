@@ -1,0 +1,19 @@
+stages:
+  make_dataset:
+    cmd: python src/data/make_dataset.py --input data/raw --output 
+      data/processed
+    deps:
+    - data/raw/CurrentVoltage.csv
+    - data/raw/Overview.csv
+    - src/data/make_dataset.py
+    outs:
+    - data/processed
+  validate_overview:
+    cmd: python src/data/validate.py data/raw/Overview.csv --schema 
+      config/schema.json --report-path reports/validation_overview.json
+    deps:
+    - config/schema.json
+    - data/raw/Overview.csv
+    - src/data/validate.py
+    outs:
+    - reports/validation_overview.json

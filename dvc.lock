@@ -1,0 +1,112 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data/make_dataset.py data/raw data/interim
+    deps:
+    - path: data/raw/CurrentVoltage.csv
+      hash: md5
+      md5: 4edd012e5708f2408ab34a881b50b659
+      size: 1428576
+    - path: data/raw/Overview.csv
+      hash: md5
+      md5: d23abedf9eab873ea5a60de5892fa9c2
+      size: 1003649
+    - path: src/data/make_dataset.py
+      hash: md5
+      md5: 7fe0fd1a82e6a17082289e08d54315bd
+      size: 1704
+    outs:
+    - path: data/interim/merged.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+  promote-data:
+    cmd: cp data/interim/merged.csv data/processed/merged.csv
+    deps:
+    - path: data/interim/merged.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+    outs:
+    - path: data/processed/merged.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+  features:
+    cmd: python src/features/build_features.py data/processed data/features
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: a3efd53ef4e574e32eaa503a68e4cb49.dir
+      size: 2206322
+      nfiles: 2
+    - path: src/features/build_features.py
+      hash: md5
+      md5: 8a1622cabfc5ba457facfee92786a0bc
+      size: 496
+    outs:
+    - path: data/features
+      hash: md5
+      md5: b8e5f43267b5dcf2d00f40df9b3f5a8a.dir
+      size: 2206309
+      nfiles: 1
+  train:
+    cmd: python src/models/train_model.py data/features models/model.pkl
+    deps:
+    - path: data/features
+      hash: md5
+      md5: b8e5f43267b5dcf2d00f40df9b3f5a8a.dir
+      size: 2206309
+      nfiles: 1
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 2d4bb871db924d2ded11ea7760bd9c42
+      size: 1287
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 3738c3d16bf65d51bba14cc49fb0b0e2
+      size: 1050
+  make_dataset:
+    cmd: python src/data/make_dataset.py --input data/raw --output 
+      data/processed
+    deps:
+    - path: data/raw/CurrentVoltage.csv
+      hash: md5
+      md5: 4edd012e5708f2408ab34a881b50b659
+      size: 1428576
+    - path: data/raw/Overview.csv
+      hash: md5
+      md5: d23abedf9eab873ea5a60de5892fa9c2
+      size: 1003649
+    - path: src/data/make_dataset.py
+      hash: md5
+      md5: 5843736463dc4f30ccf1b6a52b2ce1d4
+      size: 1889
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 75ff4f5e166d1e02696c7f4fdb00731b.dir
+      size: 2206309
+      nfiles: 1
+  validate_overview:
+    cmd: python src/data/validate.py data/raw/Overview.csv --schema 
+      config/schema.json --report-path reports/validation_overview.json
+    deps:
+    - path: config/schema.json
+      hash: md5
+      md5: d0b870168bb8d95d8fc917e520d65207
+      size: 1570
+    - path: data/raw/Overview.csv
+      hash: md5
+      md5: d23abedf9eab873ea5a60de5892fa9c2
+      size: 1003649
+    - path: src/data/validate.py
+      hash: md5
+      md5: 75b27caa9e21a225b368b584f37b9feb
+      size: 2506
+    outs:
+    - path: reports/validation_overview.json
+      hash: md5
+      md5: e5f1c287eb798576b004b17e034c4195
+      size: 323

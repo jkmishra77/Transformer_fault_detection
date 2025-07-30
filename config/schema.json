@@ -1,0 +1,77 @@
+{
+    "columns": {
+        "devicetimestamp": "datetime64[ns]",
+        "vl1": "float64",
+        "vl2": "float64",
+        "vl3": "float64",
+        "il1": "float64",
+        "il2": "float64",
+        "il3": "float64",
+        "vl12": "float64",
+        "vl23": "float64",
+        "vl31": "float64",
+        "inut": "float64",
+        "oti": "float64",
+        "wti": "float64",
+        "ati": "float64",
+        "oli": "float64",
+        "oti_a": "float64",
+        "oti_t": "float64",
+        "mog_a": "float64"
+    },
+    "required_columns": [
+        "devicetimestamp",
+        "vl1",
+        "vl2",
+        "vl3",
+        "il1",
+        "il2",
+        "il3",
+        "vl12",
+        "vl23",
+        "vl31",
+        "inut",
+        "oti",
+        "wti",
+        "ati",
+        "oli",
+        "oti_a",
+        "oti_t",
+        "mog_a"
+    ],
+    "allowed_sensor_ids": [],
+    "value_ranges": {
+        "vl1": {
+            "min": 0,
+            "max": 300
+        },
+        "vl2": {
+            "min": 0,
+            "max": 300
+        },
+        "vl3": {
+            "min": 0,
+            "max": 300
+        },
+        "oti": {
+            "min": 0,
+            "max": 150
+        },
+        "oli": {
+            "min": 0,
+            "max": 150
+        },
+        "oti_a": {
+            "min": 0,
+            "max": 150
+        },
+        "oti_t": {
+            "min": 0,
+            "max": 150
+        },
+        "mog_a": {
+            "min": 0,
+            "max": 150
+        }
+    }
+}
