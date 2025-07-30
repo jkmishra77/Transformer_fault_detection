@@ -17,3 +17,11 @@ stages:
     - src/data/validate.py
     outs:
     - reports/validation_overview.json
+  validate_merged:
+    cmd: python src/data/validate.py data/processed/merged.csv --schema 
+      config/schema.json --report-path reports/validation_merged.json
+    deps:
+    - config/schema.json
+    - data/processed/merged.csv
+    outs:
+    - reports/validation_merged.json

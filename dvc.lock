@@ -110,3 +110,20 @@ stages:
       hash: md5
       md5: e5f1c287eb798576b004b17e034c4195
       size: 323
+  validate_merged:
+    cmd: python src/data/validate.py data/processed/merged.csv --schema 
+      config/schema.json --report-path reports/validation_merged.json
+    deps:
+    - path: config/schema.json
+      hash: md5
+      md5: d0b870168bb8d95d8fc917e520d65207
+      size: 1570
+    - path: data/processed/merged.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+    outs:
+    - path: reports/validation_merged.json
+      hash: md5
+      md5: 1ee7216208cba3299b4b728b557d3306
+      size: 343
