@@ -1,6 +1,7 @@
 stages:
   make_dataset:
-    cmd: python src/data_processing/make_dataset.py data/raw data/interim
+    cmd: >
+      python src/data_processing/make_dataset.py data/raw data/interim
     deps:
       - data/raw
       - src/data_processing/make_dataset.py
@@ -11,22 +12,23 @@ stages:
       - data/interim/merged.csv
 
   validate:
-    cmd: python src/data_processing/validate.py \
-      data/interim/merged.csv \
-      --schema config/schema.json \
+    cmd: >
+      python src/data_processing/validate.py
+      --schema config/schema.json
       --report reports/validation_report.json
+      data/interim/merged.csv
     deps:
       - config/schema.json
       - data/interim/merged.csv
       - src/data_processing/validate.py
-    # no params needed here if validate.py doesn't read hyperparams
     outs:
       - reports/validation_report.json
 
   build_features:
-    cmd: python src/features/build_features.py \
-      --input-file data/interim/merged.csv \
-      --output-dir data/processed \
+    cmd: >
+      python src/features/build_features.py
+      --input-file data/interim/merged.csv
+      --output-dir data/processed
       --manifest manifest_features.json
     deps:
       - data/interim/merged.csv
