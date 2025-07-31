@@ -1,11 +1,28 @@
 {
-  "data_settings": {
-    "target_column": "mog_a"
-  },
+  "target_column": "target",
+  "timestamp_column": "devicetimestamp",
+  "test_size": 0.2,
+  "random_state": 42,
   "models": {
-    "test_model": {
-      "class_name": "sklearn.ensemble.RandomForestClassifier",
-      "n_estimators": 10
+    "rf_100": {
+      "class_name": "RandomForestClassifier",
+      "n_estimators": 100,
+      "max_depth": 10
+    },
+    "rf_200": {
+      "class_name": "RandomForestClassifier",
+      "n_estimators": 200,
+      "max_depth": 20
+    },
+    "svc_rbf": {
+      "class_name": "SVC",
+      "kernel": "rbf",
+      "C": 1.0
+    },
+    "svc_lin": {
+      "class_name": "SVC",
+      "kernel": "linear",
+      "C": 1.0
     }
   }
 }
