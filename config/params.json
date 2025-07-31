@@ -1,0 +1,30 @@
+{
+  "train": {
+    "target_column": "target",
+    "timestamp_column": "devicetimestamp",
+    "test_size": 0.2,
+    "random_state": 42,
+    "models": {
+      "rf_100": {
+        "class_name": "RandomForestClassifier",
+        "n_estimators": 100,
+        "max_depth": 10
+      },
+      "rf_200": {
+        "class_name": "RandomForestClassifier",
+        "n_estimators": 200,
+        "max_depth": 20
+      },
+      "svc_rbf": {
+        "class_name": "SVC",
+        "C": 1.0,
+        "kernel": "rbf"
+      },
+      "svc_lin": {
+        "class_name": "SVC",
+        "C": 1.0,
+        "kernel": "linear"
+      }
+    }
+  }
+}
