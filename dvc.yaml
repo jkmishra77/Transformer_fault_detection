@@ -6,7 +6,7 @@ stages:
       - data/raw
       - src/data_processing/make_dataset.py
     params:
-      - config/params.yaml:
+      - config/params.json:
           - '*' 
     outs:
       - data/interim/merged.csv
@@ -34,7 +34,7 @@ stages:
       - data/interim/merged.csv
       - src/features/build_features.py
     params:
-      - config/params.yaml:
+      - config/params.json:
           - '*'
     outs:
       - data/processed/features.csv
