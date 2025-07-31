@@ -79,30 +79,6 @@ stages:
       hash: md5
       md5: c00554a4fd537fb51943bd7e014f8ffb
       size: 2076
-    params:
-      config/params.json:
-        '*':
-          target_column: target
-          timestamp_column: devicetimestamp
-          test_size: 0.2
-          random_state: 42
-          models:
-            rf_100:
-              class_name: RandomForestClassifier
-              n_estimators: 100
-              max_depth: 10
-            rf_200:
-              class_name: RandomForestClassifier
-              n_estimators: 200
-              max_depth: 20
-            svc_rbf:
-              class_name: SVC
-              C: 1.0
-              kernel: rbf
-            svc_lin:
-              class_name: SVC
-              C: 1.0
-              kernel: linear
     outs:
     - path: data/interim/merged.csv
       hash: md5
@@ -179,30 +155,6 @@ stages:
       hash: md5
       md5: 7eb41f212f2b0b87b973ee23d6a2923e
       size: 2537
-    params:
-      config/params.json:
-        '*':
-          target_column: target
-          timestamp_column: devicetimestamp
-          test_size: 0.2
-          random_state: 42
-          models:
-            rf_100:
-              class_name: RandomForestClassifier
-              n_estimators: 100
-              max_depth: 10
-            rf_200:
-              class_name: RandomForestClassifier
-              n_estimators: 200
-              max_depth: 20
-            svc_rbf:
-              class_name: SVC
-              C: 1.0
-              kernel: rbf
-            svc_lin:
-              class_name: SVC
-              C: 1.0
-              kernel: linear
     outs:
     - path: data/processed/features.csv
       hash: md5
@@ -210,7 +162,7 @@ stages:
       size: 2206309
     - path: manifest_features.json
       hash: md5
-      md5: a5082604a2d66b18cfb0071c10a0588b
+      md5: a66e6fd0fb88b79a8dc71589ecff50f4
       size: 222
   train_model:
     cmd: python src/models/train.py     --input-file data/processed/features.csv
