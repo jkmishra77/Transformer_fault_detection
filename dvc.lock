@@ -68,7 +68,7 @@ stages:
       md5: 3738c3d16bf65d51bba14cc49fb0b0e2
       size: 1050
   make_dataset:
-    cmd: python src/data_processing/make_dataset.py data/raw data/interim
+    cmd: "python src/data_processing/make_dataset.py data/raw data/interim\n"
     deps:
     - path: data/raw
       hash: md5
@@ -79,6 +79,30 @@ stages:
       hash: md5
       md5: c00554a4fd537fb51943bd7e014f8ffb
       size: 2076
+    params:
+      config/params.json:
+        '*':
+          target_column: target
+          timestamp_column: devicetimestamp
+          test_size: 0.2
+          random_state: 42
+          models:
+            rf_100:
+              class_name: RandomForestClassifier
+              n_estimators: 100
+              max_depth: 10
+            rf_200:
+              class_name: RandomForestClassifier
+              n_estimators: 200
+              max_depth: 20
+            svc_rbf:
+              class_name: SVC
+              C: 1.0
+              kernel: rbf
+            svc_lin:
+              class_name: SVC
+              C: 1.0
+              kernel: linear
     outs:
     - path: data/interim/merged.csv
       hash: md5
@@ -123,8 +147,8 @@ stages:
       md5: 1ee7216208cba3299b4b728b557d3306
       size: 343
   validate:
-    cmd: python src/data_processing/validate.py data/interim/merged.csv --schema
-      config/schema.json --report reports/validation_report.json
+    cmd: "python src/data_processing/validate.py --schema config/schema.json --report
+      reports/validation_report.json data/interim/merged.csv\n"
     deps:
     - path: config/schema.json
       hash: md5
@@ -144,9 +168,8 @@ stages:
       md5: 334f7220d677d70b5be7c4eab7d98cbf
       size: 62
   build_features:
-    cmd: python src/features/build_features.py --input-file 
-      data/interim/merged.csv --output-dir data/processed --manifest 
-      manifest_features.json
+    cmd: "python src/features/build_features.py --input-file data/interim/merged.csv
+      --output-dir data/processed --manifest manifest_features.json\n"
     deps:
     - path: data/interim/merged.csv
       hash: md5
@@ -156,6 +179,30 @@ stages:
       hash: md5
       md5: 7eb41f212f2b0b87b973ee23d6a2923e
       size: 2537
+    params:
+      config/params.json:
+        '*':
+          target_column: target
+          timestamp_column: devicetimestamp
+          test_size: 0.2
+          random_state: 42
+          models:
+            rf_100:
+              class_name: RandomForestClassifier
+              n_estimators: 100
+              max_depth: 10
+            rf_200:
+              class_name: RandomForestClassifier
+              n_estimators: 200
+              max_depth: 20
+            svc_rbf:
+              class_name: SVC
+              C: 1.0
+              kernel: rbf
+            svc_lin:
+              class_name: SVC
+              C: 1.0
+              kernel: linear
     outs:
     - path: data/processed/features.csv
       hash: md5
@@ -163,7 +210,7 @@ stages:
       size: 2206309
     - path: manifest_features.json
       hash: md5
-      md5: 36c385d59e11c4757a81182deec0fd8b
+      md5: a5082604a2d66b18cfb0071c10a0588b
       size: 222
   train_model:
     cmd: python src/models/train.py     --input-file data/processed/features.csv
