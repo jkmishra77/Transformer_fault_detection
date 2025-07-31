@@ -165,3 +165,29 @@ stages:
       hash: md5
       md5: 31c9033a1ed2d4f68528a9790ec1cc28
       size: 222
+  train_model:
+    cmd: python src/models/train.py     --input-file data/processed/features.csv
+      --config config/train_config.json     --output-model 
+      models/transformer.pkl     --metrics-file metrics/metrics.json
+    deps:
+    - path: config/train_config.json
+      hash: md5
+      md5: 002dc3742aa8f29f2a46fde1e71880f1
+      size: 204
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+    - path: src/models/train.py
+      hash: md5
+      md5: e60291f25db4bb2d8569dca1c3d0cb00
+      size: 3631
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: 9bb8a3a2b5f276a4e6662bf4c4da36be
+      size: 776
+    - path: models/transformer.pkl
+      hash: md5
+      md5: 9070f5313b31c817d31a54bb368e4506
+      size: 4544201

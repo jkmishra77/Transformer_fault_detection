@@ -25,3 +25,16 @@ stages:
     outs:
     - data/processed/features.csv
     - manifest_features.json
+  train_model:
+    cmd: python src/models/train.py     --input-file data/processed/features.csv     
+      --config config/train_config.json     --output-model 
+      models/transformer.pkl     --metrics-file metrics/metrics.json
+    deps:
+    - config/train_config.json
+    - data/processed/features.csv
+    - src/models/train.py
+    outs:
+    - models/transformer.pkl
+    metrics:
+    - metrics/metrics.json:
+        cache: false

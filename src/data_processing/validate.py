@@ -1,76 +1,104 @@
-import pandas as pd, json, click, logging, numpy as np
+#!/usr/bin/env python3
+import sys
+import json
+import logging
+import argparse
 from pathlib import Path
 
+import pandas as pd
+import numpy as np
+
+# 1. Logging setup
 logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     level=logging.INFO,
 )
 
-def load_schema(path):
-    with open(path, "r") as f:
+def load_schema(path: Path) -> dict:
+    with path.open() as f:
         return json.load(f)
 
-def validate_df(df, schema):
-    report = {"missing_columns": [], "type_mismatches": [], "range_violations": []}
+def validate_df(df: pd.DataFrame, schema: dict) -> dict:
+    report = {"missing_columns": [],
+              "type_mismatches": [],
+              "range_violations": []}
 
-    expected_cols = schema["required_columns"]
+    required = schema["required_columns"]
     col_types = schema["columns"]
-    ranges = schema.get("value_ranges", {})
+    ranges   = schema.get("value_ranges", {})
 
-    # Check required columns
-    for col in expected_cols:
-        if col not in df.columns:
-            report["missing_columns"].append(col)
+    # missing columns
+    for c in required:
+        if c not in df:
+            report["missing_columns"].append(c)
 
-    # Check dtypes
-    for col, expected in col_types.items():
-        if col in df.columns:
-            actual = str(df[col].dtype)
+    # dtype mismatches
+    for c, expected in col_types.items():
+        if c in df:
+            actual = str(df[c].dtype)
             if actual != expected:
-                report["type_mismatches"].append({"column": col, "expected": expected, "actual": actual})
+                report["type_mismatches"].append({
+                    "column": c,
+                    "expected": expected,
+                    "actual": actual
+                })
 
-    # Check ranges
-    for col, bounds in ranges.items():
-        if col in df.columns:
-            out_of_range = df[(df[col] < bounds["min"]) | (df[col] > bounds["max"])]
-            if not out_of_range.empty:
+    # out-of-range values
+    for c, bounds in ranges.items():
+        if c in df:
+            mask = (df[c] < bounds["min"]) | (df[c] > bounds["max"])
+            viol = df.loc[mask, c]
+            if not viol.empty:
                 report["range_violations"].append({
-                    "column": col,
-                    "violations": len(out_of_range),
-                    "examples": out_of_range[col].head(3).tolist()
+                    "column": c,
+                    "violations": int(viol.size),
+                    "examples": viol.head(3).tolist()
                 })
 
     return report
 
-def clean_json(obj):
-    def convert(o):
-        if isinstance(o, (np.integer, np.floating)):
-            return o.item()
-        elif isinstance(o, dict):
-            return {k: convert(v) for k, v in o.items()}
-        elif isinstance(o, list):
-            return [convert(v) for v in o]
-        return o
-    return convert(obj)
+def clean_numpy(obj):
+    """Recursively convert numpy types to native Python types for JSON."""
+    if isinstance(obj, (np.integer, np.floating)):
+        return obj.item()
+    if isinstance(obj, dict):
+        return {k: clean_numpy(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [clean_numpy(v) for v in obj]
+    return obj
 
-@click.command()
-@click.argument("csv", type=click.Path(exists=True))
-@click.option("--schema", type=click.Path(exists=True), required=True)
-@click.option("--report-path", type=click.Path(), required=True)
-def main(csv, schema, report_path):
-    logging.info(f"🔍 Validating: {csv}")
-    df = pd.read_csv(csv)
-    schema_dict = load_schema(schema)
-    report = validate_df(df, schema_dict)
+def parse_args():
+    p = argparse.ArgumentParser(
+        description="Validate a CSV against JSON schema and emit a report."
+    )
+    p.add_argument("csv",        type=Path, help="Path to input CSV file")
+    p.add_argument("--schema",   type=Path, help="JSON schema path", required=True)
+    p.add_argument("--report",   type=Path, help="Output report path", required=True)
+    return p.parse_args()
 
-    with open(report_path, "w") as f:
-        json.dump(clean_json(report), f, indent=2)
+def main():
+    args = parse_args()
 
-    logging.info(f"✅ Report saved: {report_path}")
+    logging.info(f"🔍 Validating {args.csv}")
+    df     = pd.read_csv(args.csv)
+    schema = load_schema(args.schema)
+
+    report = validate_df(df, schema)
+
+    # write JSON
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    with args.report.open("w") as f:
+        json.dump(clean_numpy(report), f, indent=2)
+
+    logging.info(f"✅ Report saved: {args.report}")
+
+    # exit with code if any issues
     if any(report.values()):
         logging.warning("❗ Validation issues found")
-    else:
-        logging.info("✅ All checks passed")
+        sys.exit(1)
+
+    logging.info("✅ All checks passed")
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()
