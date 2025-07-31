@@ -15,3 +15,13 @@ stages:
     - src/data_processing/validate.py
     outs:
     - reports/validation_report.json
+  build_features:
+    cmd: python src/features/build_features.py --input-file 
+      data/interim/merged.csv --output-dir data/processed --manifest 
+      manifest_features.json
+    deps:
+    - data/interim/merged.csv
+    - src/features/build_features.py
+    outs:
+    - data/processed/features.csv
+    - manifest_features.json

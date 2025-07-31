@@ -122,3 +122,46 @@ stages:
       hash: md5
       md5: 1ee7216208cba3299b4b728b557d3306
       size: 343
+  validate:
+    cmd: python src/data_processing/validate.py data/interim/merged.csv --schema
+      config/schema.json --report-path reports/validation_report.json
+    deps:
+    - path: config/schema.json
+      hash: md5
+      md5: d0b870168bb8d95d8fc917e520d65207
+      size: 1570
+    - path: data/interim/merged.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+    - path: src/data_processing/validate.py
+      hash: md5
+      md5: 75b27caa9e21a225b368b584f37b9feb
+      size: 2506
+    outs:
+    - path: reports/validation_report.json
+      hash: md5
+      md5: 1ee7216208cba3299b4b728b557d3306
+      size: 343
+  build_features:
+    cmd: python src/features/build_features.py --input-file 
+      data/interim/merged.csv --output-dir data/processed --manifest 
+      manifest_features.json
+    deps:
+    - path: data/interim/merged.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+    - path: src/features/build_features.py
+      hash: md5
+      md5: 7eb41f212f2b0b87b973ee23d6a2923e
+      size: 2537
+    outs:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 38144f7b7309a1e5814b6f571972cb1f
+      size: 2206309
+    - path: manifest_features.json
+      hash: md5
+      md5: 31c9033a1ed2d4f68528a9790ec1cc28
+      size: 222
