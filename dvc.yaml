@@ -6,4 +6,12 @@ stages:
     - src/data_processing/make_dataset.py
     outs:
     - data/interim/merged.csv
-  
+  validate:
+    cmd: python src/data_processing/validate.py data/interim/merged.csv --schema
+      config/schema.json --report-path reports/validation_report.json
+    deps:
+    - config/schema.json
+    - data/interim/merged.csv
+    - src/data_processing/validate.py
+    outs:
+    - reports/validation_report.json
