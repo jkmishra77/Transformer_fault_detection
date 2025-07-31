@@ -124,7 +124,7 @@ stages:
       size: 343
   validate:
     cmd: python src/data_processing/validate.py data/interim/merged.csv --schema
-      config/schema.json --report-path reports/validation_report.json
+      config/schema.json --report reports/validation_report.json
     deps:
     - path: config/schema.json
       hash: md5
@@ -136,13 +136,13 @@ stages:
       size: 2206309
     - path: src/data_processing/validate.py
       hash: md5
-      md5: 75b27caa9e21a225b368b584f37b9feb
-      size: 2506
+      md5: 9f94c92a0138ce44a0344a67b7032ffb
+      size: 2648
     outs:
     - path: reports/validation_report.json
       hash: md5
-      md5: 1ee7216208cba3299b4b728b557d3306
-      size: 343
+      md5: 334f7220d677d70b5be7c4eab7d98cbf
+      size: 62
   build_features:
     cmd: python src/features/build_features.py --input-file 
       data/interim/merged.csv --output-dir data/processed --manifest 
@@ -163,7 +163,7 @@ stages:
       size: 2206309
     - path: manifest_features.json
       hash: md5
-      md5: 31c9033a1ed2d4f68528a9790ec1cc28
+      md5: 36c385d59e11c4757a81182deec0fd8b
       size: 222
   train_model:
     cmd: python src/models/train.py     --input-file data/processed/features.csv

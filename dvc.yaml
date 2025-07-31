@@ -8,7 +8,7 @@ stages:
     - data/interim/merged.csv
   validate:
     cmd: python src/data_processing/validate.py data/interim/merged.csv --schema
-      config/schema.json --report-path reports/validation_report.json
+      config/schema.json --report reports/validation_report.json
     deps:
     - config/schema.json
     - data/interim/merged.csv
