@@ -38,11 +38,12 @@ stages:
 
  
   train:
-    cmd: python src/models/train.py \
-         --input-file data/processed/features.csv \
-         --config config/params.json \
-         --output-model-dir models/ \
-         --metrics-file reports/train_metrics.json
+    cmd: >
+      python src/models/train.py
+      --input-file data/processed/features.csv
+      --config config/params.json
+      --output-model-dir models/
+      --metrics-file reports/train_metrics.json
     deps:
       - src/models/train.py
       - data/processed/features.csv
