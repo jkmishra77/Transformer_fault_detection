@@ -1,13 +1,12 @@
 stages:
   make_dataset:
     cmd: >
-      python src/data_processing/make_dataset.py data/raw data/interim
+      python src/data_processing/make_dataset.py
+      data/raw
+      data/interim
     deps:
-      - data/raw
       - src/data_processing/make_dataset.py
-    params:
-      - config/params.json:
-          - '*' 
+      - data/raw
     outs:
       - data/interim/merged.csv
 
@@ -18,9 +17,9 @@ stages:
       --report reports/validation_report.json
       data/interim/merged.csv
     deps:
+      - src/data_processing/validate.py
       - config/schema.json
       - data/interim/merged.csv
-      - src/data_processing/validate.py
     outs:
       - reports/validation_report.json
 
@@ -31,27 +30,26 @@ stages:
       --output-dir data/processed
       --manifest manifest_features.json
     deps:
-      - data/interim/merged.csv
       - src/features/build_features.py
-    params:
-      - config/params.json:
-          - '*'
+      - data/interim/merged.csv
     outs:
       - data/processed/features.csv
       - manifest_features.json
+
+ 
   train:
-      cmd: >
-        python src/models/train.py
-        --input-file        data/processed/features.csv
-        --config            config/params.json
-        --output-model-dir  models/
-        --metrics-file      reports/train_metrics.json
-      deps:
-        - src/models/train.py
-        - data/processed/features.csv
-        - config/params.json
-      params:
-        - config/params.json
-      outs:
-        - models/
-        - reports/train_metrics.json
+    cmd: python src/models/train.py \
+         --input-file data/processed/features.csv \
+         --config config/params.json \
+         --output-model-dir models/ \
+         --metrics-file reports/train_metrics.json
+    deps:
+      - src/models/train.py
+      - data/processed/features.csv
+      - config/params.json
+    params:
+      - config/params.json:
+          - "*"
+    outs:
+      - models/
+      - reports/train_metrics.json
