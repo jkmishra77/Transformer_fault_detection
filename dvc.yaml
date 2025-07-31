@@ -2,39 +2,35 @@ stages:
   make_dataset:
     cmd: python src/data_processing/make_dataset.py data/raw data/interim
     deps:
-    - data/raw
-    - src/data_processing/make_dataset.py
+      - data/raw
+      - src/data_processing/make_dataset.py
+    params:
+      - config/params.yaml
     outs:
-    - data/interim/merged.csv
+      - data/interim/merged.csv
+
   validate:
-    cmd: python src/data_processing/validate.py data/interim/merged.csv --schema
-      config/schema.json --report reports/validation_report.json
+    cmd: python src/data_processing/validate.py data/interim/merged.csv \
+      --schema config/schema.json --report reports/validation_report.json
     deps:
-    - config/schema.json
-    - data/interim/merged.csv
-    - src/data_processing/validate.py
+      - config/schema.json
+      - data/interim/merged.csv
+      - src/data_processing/validate.py
+    params:
+      - config/params.yaml
     outs:
-    - reports/validation_report.json
+      - reports/validation_report.json
+
   build_features:
-    cmd: python src/features/build_features.py --input-file 
-      data/interim/merged.csv --output-dir data/processed --manifest 
-      manifest_features.json
+    cmd: python src/features/build_features.py \
+      --input-file data/interim/merged.csv \
+      --output-dir data/processed \
+      --manifest manifest_features.json
     deps:
-    - data/interim/merged.csv
-    - src/features/build_features.py
+      - data/interim/merged.csv
+      - src/features/build_features.py
+    params:
+      - config/params.yaml
     outs:
-    - data/processed/features.csv
-    - manifest_features.json
-  train_model:
-    cmd: python src/models/train.py     --input-file data/processed/features.csv     
-      --config config/train_config.json     --output-model 
-      models/transformer.pkl     --metrics-file metrics/metrics.json
-    deps:
-    - config/train_config.json
-    - data/processed/features.csv
-    - src/models/train.py
-    outs:
-    - models/transformer.pkl
-    metrics:
-    - metrics/metrics.json:
-        cache: false
+      - data/processed/features.csv
+      - manifest_features.json
