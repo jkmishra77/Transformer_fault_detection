@@ -72,9 +72,9 @@ stages:
     deps:
     - path: data/raw
       hash: md5
-      md5: 62a433154a5ed8a700cd33f6fe659b24.dir
+      md5: f2ee479bf898412f1d4c903f22547a76.dir
       size: 2432225
-      nfiles: 3
+      nfiles: 2
     - path: src/data_processing/make_dataset.py
       hash: md5
       md5: c00554a4fd537fb51943bd7e014f8ffb
@@ -162,7 +162,7 @@ stages:
       size: 2206309
     - path: manifest_features.json
       hash: md5
-      md5: d108371ba486650daa817b4886d96eac
+      md5: 29c4f329afbfadccc187bbac5be016d1
       size: 222
   train_model:
     cmd: python src/models/train.py     --input-file data/processed/features.csv

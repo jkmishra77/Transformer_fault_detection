@@ -1,8 +1,10 @@
 {
-  "target_column": "target",
-  "timestamp_column": "devicetimestamp",
-  "test_size": 0.2,
-  "random_state": 42,
+  "data_settings": {
+    "target_column": "mog_a",
+    "timestamp_column": "devicetimestamp",
+    "test_size": 0.2,
+    "random_state": 42
+  },
   "models": {
     "rf_100": {
       "class_name": "RandomForestClassifier",

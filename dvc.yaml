@@ -39,6 +39,7 @@ stages:
  
   train:
     cmd: >
+      mkdir -p models &&
       python src/models/train.py
       --input-file data/processed/features.csv
       --config config/params.json
@@ -50,7 +51,9 @@ stages:
       - config/params.json
     params:
       - config/params.json:
-          - "*"
+          - target_column
+          - test_size
+          - random_state
     outs:
       - models/
       - reports/train_metrics.json
