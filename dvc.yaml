@@ -38,15 +38,13 @@ stages:
 
 
   train:
-    cmd: >-
-      python src/models/train.py --input-file data/processed/features.csv --config
-      config/params.json --output-model-dir models/ --metrics-file reports/train_metrics.json
+    cmd: python src/models/train.py --input-file data/processed/features.csv 
+      --config config/params.json --output-model-dir models/ --metrics-file 
+      reports/train_metrics.json
     deps:
     - config/params.json
     - data/processed/features.csv
     - src/models/train.py
     outs:
-    - models
-    metrics:
-    - reports/train_metrics.json:
-        cache: false
+    - models/
+    - reports/train_metrics.json

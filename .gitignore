@@ -32,6 +32,5 @@ Thumbs.db
 
 # Temporary root params symlink (to avoid committing it)
 params.yaml
-
-/manifest_features.json
+manifest_features.json
 /models
