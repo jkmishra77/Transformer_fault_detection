@@ -12,6 +12,10 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 import joblib
 
+
+os.makedirs(args.output_model_dir, exist_ok=True)
+
+
 MODEL_MAPPING = {
     "RandomForestClassifier": RandomForestClassifier,
     "SVC": SVC,
