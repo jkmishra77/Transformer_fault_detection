@@ -5,10 +5,10 @@ stages:
       data/raw
       data/interim
     deps:
-      - src/data_processing/make_dataset.py
-      - data/raw
+    - src/data_processing/make_dataset.py
+    - data/raw
     outs:
-      - data/interim/merged.csv
+    - data/interim/merged.csv
 
   validate:
     cmd: >
@@ -17,11 +17,11 @@ stages:
       --report reports/validation_report.json
       data/interim/merged.csv
     deps:
-      - src/data_processing/validate.py
-      - config/schema.json
-      - data/interim/merged.csv
+    - src/data_processing/validate.py
+    - config/schema.json
+    - data/interim/merged.csv
     outs:
-      - reports/validation_report.json
+    - reports/validation_report.json
 
   build_features:
     cmd: >
@@ -30,30 +30,23 @@ stages:
       --output-dir data/processed
       --manifest manifest_features.json
     deps:
-      - src/features/build_features.py
-      - data/interim/merged.csv
+    - src/features/build_features.py
+    - data/interim/merged.csv
     outs:
-      - data/processed/features.csv
-      - manifest_features.json
+    - data/processed/features.csv
+    - manifest_features.json
 
- 
+
   train:
-    cmd: >
-      mkdir -p models &&
-      python src/models/train.py
-      --input-file data/processed/features.csv
-      --config config/params.json
-      --output-model-dir models/
-      --metrics-file reports/train_metrics.json
+    cmd: >-
+      python src/models/train.py --input-file data/processed/features.csv --config
+      config/params.json --output-model-dir models/ --metrics-file reports/train_metrics.json
     deps:
-      - src/models/train.py
-      - data/processed/features.csv
-      - config/params.json
-    params:
-      - config/params.json:
-          - target_column
-          - test_size
-          - random_state
+    - config/params.json
+    - data/processed/features.csv
+    - src/models/train.py
     outs:
-      - models/
-      - reports/train_metrics.json
+    - models
+    metrics:
+    - reports/train_metrics.json:
+        cache: false
