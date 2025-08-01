@@ -145,7 +145,7 @@ stages:
       size: 2206309
     - path: manifest_features.json
       hash: md5
-      md5: f7c727e308871b64078c527ef01ac201
+      md5: 03dcbae241c5879666bf2c04c4edc912
       size: 222
   train_model:
     cmd: python src/models/train.py     --input-file data/processed/features.csv
