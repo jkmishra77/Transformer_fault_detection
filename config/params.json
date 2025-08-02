@@ -1,29 +1,21 @@
 {
-  "data_settings": {
-    "target_column": "mog_a",
-    "test_size": 0.2,
-    "random_state": 42,
-    "resampling": "smote" // "smote", "class_weight", or "none"
-  },
-  "model_selection": {
-    "eval_metric": "f1_weighted",
-    "save_best_only": true
-  },
+  "target_column": "mog_a",
+  "test_size": 0.2,
+  "random_state": 42,
   "models": {
-    "RandomForest": {
-      "class": "sklearn.ensemble.RandomForestClassifier",
-      "params": {
-        "n_estimators": 100,
-        "max_depth": 10
-      }
+    "rf": {
+      "class_name": "RandomForestClassifier",
+      "n_estimators": 100,
+      "max_depth": 5
     },
-    "SVM_RBF": {
-      "class": "sklearn.svm.SVC",
-      "params": {
-        "kernel": "rbf",
-        "C": 1.0,
-        "probability": true
-      }
+    "svm": {
+      "class_name": "SVC",
+      "C": 1.0,
+      "kernel": "rbf"
+    },
+    "logreg": {
+      "class_name": "LogisticRegression",
+      "solver": "liblinear"
     }
   }
 }
