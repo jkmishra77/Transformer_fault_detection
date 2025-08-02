@@ -1,30 +1,29 @@
 {
   "data_settings": {
     "target_column": "mog_a",
-    "timestamp_column": "devicetimestamp",
     "test_size": 0.2,
-    "random_state": 42
+    "random_state": 42,
+    "resampling": "smote" // "smote", "class_weight", or "none"
+  },
+  "model_selection": {
+    "eval_metric": "f1_weighted",
+    "save_best_only": true
   },
   "models": {
-    "rf_100": {
-      "class_name": "RandomForestClassifier",
-      "n_estimators": 100,
-      "max_depth": 10
+    "RandomForest": {
+      "class": "sklearn.ensemble.RandomForestClassifier",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 10
+      }
     },
-    "rf_200": {
-      "class_name": "RandomForestClassifier",
-      "n_estimators": 200,
-      "max_depth": 20
-    },
-    "svc_rbf": {
-      "class_name": "SVC",
-      "kernel": "rbf",
-      "C": 1.0
-    },
-    "svc_lin": {
-      "class_name": "SVC",
-      "kernel": "linear",
-      "C": 1.0
+    "SVM_RBF": {
+      "class": "sklearn.svm.SVC",
+      "params": {
+        "kernel": "rbf",
+        "C": 1.0,
+        "probability": true
+      }
     }
   }
 }
