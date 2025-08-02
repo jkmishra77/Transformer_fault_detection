@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
+from imblearn.over_sampling import SMOTE
 
 MODEL_MAPPING = {
     "RandomForestClassifier": RandomForestClassifier,
@@ -28,8 +29,7 @@ def parse_args():
 def main():
     args = parse_args()
     logger = UT.get_logger(__name__)
-    
-    # Create directories using utility-compatible method
+
     Path(args.output_model_dir).mkdir(parents=True, exist_ok=True)
     Path(args.metrics_file).parent.mkdir(parents=True, exist_ok=True)
 
@@ -37,13 +37,13 @@ def main():
     config = UT.load_json(args.config)
     df = UT.load_csv(args.input_file)
 
-    # Validate columns
+    # Validate required columns
     target_col = config.get("target_column", "mog_a")
     required_cols = {target_col, "devicetimestamp"}
     if not required_cols.issubset(df.columns):
         raise UT.SchemaError(f"Missing required columns: {required_cols - set(df.columns)}")
 
-    # 2. Data splitting
+    # 2. Train/test split
     df_train, df_val = train_test_split(
         df, test_size=config.get("test_size", 0.2),
         random_state=config.get("random_state", 42),
@@ -51,7 +51,16 @@ def main():
     )
     UT.save_csv(df_val, "data/processed/validate.csv")
 
-    # 3. Model training
+    # Apply SMOTE on training split
+    X_train = df_train.drop(columns=[target_col, "devicetimestamp"])
+    y_train = df_train[target_col]
+
+    smote = SMOTE(random_state=config.get("random_state", 42))
+    X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
+
+    logger.info("SMOTE applied to training data")
+
+    # 3. Train & evaluate models
     all_metrics = {}
     for name, mcfg in config.get("models", {}).items():
         model_class = MODEL_MAPPING.get(mcfg.get("class_name"))
@@ -60,16 +69,12 @@ def main():
             continue
 
         try:
-            model = model_class(**{k:v for k,v in mcfg.items() if k != "class_name"})
-            model.fit(
-                df_train.drop(columns=[target_col, "devicetimestamp"]),
-                df_train[target_col]
-            )
-            
-            # Save and evaluate
+            model = model_class(**{k: v for k, v in mcfg.items() if k != "class_name"})
+            model.fit(X_train_resampled, y_train_resampled)
+
             model_path = Path(args.output_model_dir) / f"{name}.joblib"
             UT.save_model(model, model_path)
-            
+
             preds = model.predict(df_val.drop(columns=[target_col, "devicetimestamp"]))
             all_metrics[name] = {
                 "accuracy": accuracy_score(df_val[target_col], preds),
