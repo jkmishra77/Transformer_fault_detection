@@ -1,0 +1,213 @@
+[2025-08-01 02:44:30] ERROR: Fatal error in training: Missing required section: data_settings
+[2025-08-01 02:46:10] ERROR: Fatal error in training: Missing required section: data_settings
+[2025-08-01 02:47:06] ERROR: Fatal error in training: Missing required section: data_settings
+[2025-08-01 02:49:31] ERROR: Fatal error in training: Missing required section: models
+[2025-08-01 02:52:09] ERROR: Fatal error in training: Missing required section: models
+[2025-08-01 02:55:06] ERROR: Fatal error in training: Expecting value: line 1 column 1 (char 0)
+[2025-08-01 02:57:22] ERROR: Fatal error in training: Missing required section: data_settings
+[2025-08-01 03:00:46] ERROR: Fatal error in training: Missing required section: data_settings
+[2025-08-01 03:02:17] ERROR: Fatal error in training: Missing required section: data_settings
+[2025-08-01 03:04:56] ERROR: Fatal error in training: Missing required section: data_settings
+[2025-08-01 03:19:01] ERROR: Fatal error in training: Config error: [Errno 2] No such file or directory: 'F:/Projects/Transformer/config/params_fixed.json'
+[2025-08-01 03:20:08] ERROR: Fatal error in training: Config error: Missing required section: data_settings
+[2025-08-01 03:24:15] INFO: Configuration validated successfully
+[2025-08-01 03:24:15] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:24:15] ERROR: Fatal error in training: "['target'] not found in axis"
+[2025-08-01 03:30:51] INFO: Configuration validated successfully
+[2025-08-01 03:30:51] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:30:51] ERROR: Fatal error in training: "['MOG_A'] not found in axis"
+[2025-08-01 03:31:59] INFO: Configuration validated successfully
+[2025-08-01 03:31:59] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:31:59] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 03:31:59] INFO: 
+========================================
+[2025-08-01 03:31:59] INFO: Training model: test_model
+[2025-08-01 03:31:59] INFO: ========================================
+[2025-08-01 03:31:59] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 03:31:59] INFO: 
+Training complete. Metrics saved to F:/Projects/Transformer/reports/train_metrics.json
+[2025-08-01 03:37:28] INFO: Configuration validated successfully
+[2025-08-01 03:37:28] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:37:28] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 03:37:28] INFO: 
+========================================
+[2025-08-01 03:37:28] INFO: Training model: test_model
+[2025-08-01 03:37:28] INFO: ========================================
+[2025-08-01 03:37:29] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 03:37:29] INFO: 
+Training complete. Metrics saved to F:/Projects/Transformer/reports/train_metrics.json
+[2025-08-01 03:41:29] INFO: Configuration validated successfully
+[2025-08-01 03:41:29] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:41:29] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 03:41:29] INFO: 
+========================================
+[2025-08-01 03:41:29] INFO: Training model: test_model
+[2025-08-01 03:41:29] INFO: ========================================
+[2025-08-01 03:41:29] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 03:41:29] INFO: 
+Training complete. Metrics saved to F:/Projects/Transformer/reports/train_metrics.json
+[2025-08-01 03:48:00] INFO: Configuration validated successfully
+[2025-08-01 03:48:00] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:48:00] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 03:48:00] INFO: 
+========================================
+[2025-08-01 03:48:00] INFO: Training model: test_model
+[2025-08-01 03:48:00] INFO: ========================================
+[2025-08-01 03:48:00] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 03:48:00] INFO: 
+Training complete. Metrics saved to F:/Projects/Transformer/reports/train_metrics.json
+[2025-08-01 03:54:42] INFO: Configuration validated successfully
+[2025-08-01 03:54:42] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:54:42] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 03:54:42] INFO: 
+========================================
+[2025-08-01 03:54:42] INFO: Training model: test_model
+[2025-08-01 03:54:42] INFO: ========================================
+[2025-08-01 03:54:44] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 03:54:44] INFO: 
+Training complete. Metrics saved to F:/Projects/Transformer/reports/train_metrics.json
+[2025-08-01 03:57:16] INFO: Configuration validated successfully
+[2025-08-01 03:57:16] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:57:16] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 03:57:16] INFO: 
+========================================
+[2025-08-01 03:57:16] INFO: Training model: test_model
+[2025-08-01 03:57:16] INFO: ========================================
+[2025-08-01 03:57:17] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 03:57:17] INFO: 
+Training complete. Metrics saved to F:/Projects/Transformer/reports/train_metrics.json
+[2025-08-01 03:59:57] INFO: Configuration validated successfully
+[2025-08-01 03:59:58] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 03:59:58] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 03:59:58] INFO: 
+========================================
+[2025-08-01 03:59:58] INFO: Training model: test_model
+[2025-08-01 03:59:58] INFO: ========================================
+[2025-08-01 03:59:58] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 03:59:58] INFO: 
+Training complete. Metrics saved to reports/metrics.json
+[2025-08-01 04:05:19] INFO: Configuration validated successfully
+[2025-08-01 04:05:19] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 04:05:19] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 04:05:19] INFO: 
+========================================
+[2025-08-01 04:05:19] INFO: Training model: test_model
+[2025-08-01 04:05:19] INFO: ========================================
+[2025-08-01 04:05:19] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 04:05:19] INFO: 
+Training complete. Metrics saved to reports/metrics.json
+[2025-08-01 04:07:27] INFO: Configuration validated successfully
+[2025-08-01 04:07:27] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 04:07:27] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 04:07:27] INFO: 
+========================================
+[2025-08-01 04:07:27] INFO: Training model: test_model
+[2025-08-01 04:07:27] INFO: ========================================
+[2025-08-01 04:07:28] ERROR: Failed to train test_model: could not convert string to float: '2020-03-05 21:30:00'
+[2025-08-01 04:07:28] INFO: 
+Training complete. Metrics saved to reports/metrics.json
+[2025-08-01 04:32:05] ERROR: Fatal error in training: Config error: Missing required section: data_settings
+[2025-08-01 04:32:38] ERROR: Fatal error in training: Config error: Missing required section: data_settings
+[2025-08-01 04:35:02] INFO: Configuration validated successfully
+[2025-08-01 04:35:02] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 04:35:02] ERROR: Fatal error in training: "['target'] not found in axis"
+[2025-08-01 04:43:28] INFO: Configuration validated successfully
+[2025-08-01 04:43:28] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 04:43:28] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 04:43:28] INFO: 
+========================================
+[2025-08-01 04:43:28] INFO: Training model: rf_100
+[2025-08-01 04:43:28] INFO: ========================================
+[2025-08-01 04:43:28] ERROR: Failed to train rf_100: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:43:28] INFO: 
+========================================
+[2025-08-01 04:43:28] INFO: Training model: rf_200
+[2025-08-01 04:43:28] INFO: ========================================
+[2025-08-01 04:43:28] ERROR: Failed to train rf_200: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:43:28] INFO: 
+========================================
+[2025-08-01 04:43:28] INFO: Training model: svc_rbf
+[2025-08-01 04:43:28] INFO: ========================================
+[2025-08-01 04:43:28] ERROR: Failed to train svc_rbf: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:43:28] INFO: 
+========================================
+[2025-08-01 04:43:28] INFO: Training model: svc_lin
+[2025-08-01 04:43:28] INFO: ========================================
+[2025-08-01 04:43:28] ERROR: Failed to train svc_lin: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:43:28] INFO: 
+Training complete. Metrics saved to reports/train_metrics.json
+[2025-08-01 04:48:48] INFO: Configuration validated successfully
+[2025-08-01 04:48:48] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 04:48:48] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 04:48:48] INFO: 
+========================================
+[2025-08-01 04:48:48] INFO: Training model: rf_100
+[2025-08-01 04:48:48] INFO: ========================================
+[2025-08-01 04:48:48] ERROR: Failed to train rf_100: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:48:48] INFO: 
+========================================
+[2025-08-01 04:48:48] INFO: Training model: rf_200
+[2025-08-01 04:48:48] INFO: ========================================
+[2025-08-01 04:48:48] ERROR: Failed to train rf_200: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:48:48] INFO: 
+========================================
+[2025-08-01 04:48:48] INFO: Training model: svc_rbf
+[2025-08-01 04:48:48] INFO: ========================================
+[2025-08-01 04:48:48] ERROR: Failed to train svc_rbf: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:48:48] INFO: 
+========================================
+[2025-08-01 04:48:48] INFO: Training model: svc_lin
+[2025-08-01 04:48:48] INFO: ========================================
+[2025-08-01 04:48:48] ERROR: Failed to train svc_lin: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:48:48] INFO: 
+Training complete. Metrics saved to reports/train_metrics.json
+[2025-08-01 04:52:02] INFO: Configuration validated successfully
+[2025-08-01 04:52:02] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 04:52:02] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 04:52:02] INFO: 
+========================================
+[2025-08-01 04:52:02] INFO: Training model: rf_100
+[2025-08-01 04:52:02] INFO: ========================================
+[2025-08-01 04:52:02] ERROR: Failed to train rf_100: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:52:02] INFO: 
+========================================
+[2025-08-01 04:52:02] INFO: Training model: rf_200
+[2025-08-01 04:52:02] INFO: ========================================
+[2025-08-01 04:52:02] ERROR: Failed to train rf_200: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:52:02] INFO: 
+========================================
+[2025-08-01 04:52:02] INFO: Training model: svc_rbf
+[2025-08-01 04:52:02] INFO: ========================================
+[2025-08-01 04:52:02] ERROR: Failed to train svc_rbf: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:52:02] INFO: 
+========================================
+[2025-08-01 04:52:02] INFO: Training model: svc_lin
+[2025-08-01 04:52:02] INFO: ========================================
+[2025-08-01 04:52:02] ERROR: Failed to train svc_lin: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:52:02] INFO: 
+Training complete. Metrics saved to reports/train_metrics.json
+[2025-08-01 04:55:27] INFO: Configuration validated successfully
+[2025-08-01 04:55:27] INFO: Loaded data with shape: (20465, 18)
+[2025-08-01 04:55:27] INFO: Train shape: (16372, 17), Validation shape: (4093, 17)
+[2025-08-01 04:55:27] INFO: 
+========================================
+[2025-08-01 04:55:27] INFO: Training model: rf_100
+[2025-08-01 04:55:27] INFO: ========================================
+[2025-08-01 04:55:27] ERROR: Failed to train rf_100: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:55:27] INFO: 
+========================================
+[2025-08-01 04:55:27] INFO: Training model: rf_200
+[2025-08-01 04:55:27] INFO: ========================================
+[2025-08-01 04:55:27] ERROR: Failed to train rf_200: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:55:27] INFO: 
+========================================
+[2025-08-01 04:55:27] INFO: Training model: svc_rbf
+[2025-08-01 04:55:27] INFO: ========================================
+[2025-08-01 04:55:27] ERROR: Failed to train svc_rbf: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:55:27] INFO: 
+========================================
+[2025-08-01 04:55:27] INFO: Training model: svc_lin
+[2025-08-01 04:55:27] INFO: ========================================
+[2025-08-01 04:55:27] ERROR: Failed to train svc_lin: Model initialization failed: not enough values to unpack (expected 2, got 1)
+[2025-08-01 04:55:27] INFO: 
+Training complete. Metrics saved to reports/train_metrics.json
