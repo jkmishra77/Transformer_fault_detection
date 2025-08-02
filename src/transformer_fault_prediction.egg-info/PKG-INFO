@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: transformer-fault-prediction
+Version: 0.1.0
+Summary: Predict the fault of transformer
+Author: Dr J K Mishra
+License: MIT
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: joblib
+Requires-Dist: jsonschema
+Requires-Dist: python-dotenv
+Dynamic: author
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary

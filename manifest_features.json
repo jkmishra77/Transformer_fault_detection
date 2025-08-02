@@ -1,5 +1,22 @@
 {
-  "schema_hash": "8e25a1ccb63da32ebe0d3f4c0f7606ab",
-  "row_count": 20465,
-  "timestamp": "2025-08-02T11:56:30.557332"
+  "features": [
+    "devicetimestamp",
+    "vl1",
+    "vl2",
+    "vl3",
+    "il1",
+    "il2",
+    "il3",
+    "vl12",
+    "vl23",
+    "vl31",
+    "inut",
+    "oti",
+    "wti",
+    "ati",
+    "oli",
+    "oti_a",
+    "oti_t",
+    "mog_a"
+  ]
 }

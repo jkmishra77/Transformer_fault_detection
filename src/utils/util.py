@@ -14,7 +14,7 @@ class SchemaError(Exception):
 
 class utility:
     @staticmethod
-    def get_logger() -> logging.Logger:
+    def get_logger(name=None) -> logging.Logger:
         """Standardized logger setup"""
         logging.basicConfig(
             level=logging.INFO,
