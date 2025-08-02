@@ -80,3 +80,10 @@ class utility:
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(metrics, f, indent=2)
+
+    @staticmethod
+    def split_train_val(df: pd.DataFrame, test_size: float, random_state: int, target_column: str):
+        """Deterministically split full DataFrame into train and test sets."""
+        X = df.drop(columns=[target_column])
+        y = df[target_column]
+        return train_test_split(X, y, test_size=test_size, random_state=random_state)

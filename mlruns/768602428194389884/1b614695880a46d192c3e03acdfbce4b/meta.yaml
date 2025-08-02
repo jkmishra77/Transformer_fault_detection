@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/Projects/Transformer/mlruns/768602428194389884/1b614695880a46d192c3e03acdfbce4b/artifacts
+end_time: 1754160161313
+entry_point_name: ''
+experiment_id: '768602428194389884'
+lifecycle_stage: active
+run_id: 1b614695880a46d192c3e03acdfbce4b
+run_name: rf_trial_0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754160161243
+status: 4
+tags: []
+user_id: DR J K MISHRA

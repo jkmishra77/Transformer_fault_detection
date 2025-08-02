@@ -1,0 +1,45 @@
+{
+    "rf": {
+        "n_estimators": [
+            100,
+            200
+        ],
+        "max_depth": [
+            5,
+            10
+        ],
+        "min_samples_split": [
+            2,
+            4
+        ]
+    },
+    "svm": {
+        "C": [
+            0.5,
+            1.0,
+            2.0
+        ],
+        "kernel": [
+            "rbf",
+            "linear"
+        ],
+        "gamma": [
+            "scale",
+            "auto"
+        ]
+    },
+    "logreg": {
+        "solver": [
+            "liblinear",
+            "saga"
+        ],
+        "C": [
+            0.1,
+            1.0,
+            10.0
+        ],
+        "penalty": [
+            "l2"
+        ]
+    }
+}

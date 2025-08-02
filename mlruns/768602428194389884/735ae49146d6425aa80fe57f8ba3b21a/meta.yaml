@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/Projects/Transformer/mlruns/768602428194389884/735ae49146d6425aa80fe57f8ba3b21a/artifacts
+end_time: 1754166937369
+entry_point_name: ''
+experiment_id: '768602428194389884'
+lifecycle_stage: active
+run_id: 735ae49146d6425aa80fe57f8ba3b21a
+run_name: logreg
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754166931196
+status: 3
+tags: []
+user_id: DR J K MISHRA
