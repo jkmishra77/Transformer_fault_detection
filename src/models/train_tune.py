@@ -31,22 +31,22 @@ def parse_args():
     return parser.parse_args()
 
 def get_param_grid(model_name):
-    """Minimal parameter grids for fast tuning"""
+    """Optimized parameter grids"""
     if model_name == "RandomForestClassifier":
         return {
-            'classifier__n_estimators': [50],
-            'classifier__max_depth': [5],
-            'classifier__min_samples_split': [5]
+            'classifier__n_estimators': [50, 100],
+            'classifier__max_depth': [5, 10],
+            'classifier__min_samples_split': [2, 5]
         }
     elif model_name == "SVC":
         return {
-            'classifier__C': [0.1, 1],
+            'classifier__C': [0.1, 1, 10],
             'classifier__kernel': ['rbf'],
             'classifier__gamma': ['scale']
         }
     elif model_name == "LogisticRegression":
         return {
-            'classifier__C': [1.0],
+            'classifier__C': np.logspace(-3, 3, 5),
             'classifier__penalty': ['l2'],
             'classifier__solver': ['liblinear']
         }
@@ -64,7 +64,7 @@ def main():
     df = UT.load_csv(args.input_file)
     target_col = config["target_column"]
 
-    with mlflow.start_run():
+    with mlflow.start_run() as parent_run:
         # Data splitting
         df_train, df_val = train_test_split(
             df, 
@@ -83,7 +83,7 @@ def main():
         all_metrics = {}
         for name, mcfg in config["models"].items():
             model_name = mcfg["class_name"]
-            with mlflow.start_run(nested=True, run_name=name):
+            with mlflow.start_run(nested=True, run_name=name) as child_run:
                 # Create pipeline
                 pipe = Pipeline([
                     ('smote', SMOTE(random_state=config["random_state"])),
@@ -101,15 +101,14 @@ def main():
                     },
                     refit='f1_weighted',
                     cv=5,
-                    n_jobs=1,
-                    verbose=4,
-                    return_train_score=True
+                    n_jobs=-1,
+                    verbose=3
                 )
 
                 logger.info(f"\n{'='*50}\nTraining {model_name}\n{'='*50}")
                 gs.fit(X_train, y_train)
 
-                # Generate predictions for metrics
+                # Generate predictions
                 preds = gs.predict(X_val)
                 
                 # Store metrics
@@ -121,25 +120,48 @@ def main():
                         "f1_weighted": f1_score(y_val, preds, average='weighted'),
                         "recall": recall_score(y_val, preds)
                     },
-                    "cv_results": {
-                        "mean_test_f1_weighted": gs.cv_results_['mean_test_f1_weighted'].tolist(),
-                        "mean_test_recall": gs.cv_results_['mean_test_recall'].tolist()
-                    }
+                    "run_id": child_run.info.run_id  # Track MLflow run
                 }
 
                 # Log to MLflow
                 mlflow.log_params(gs.best_params_)
                 mlflow.log_metrics(all_metrics[name]["validation_metrics"])
-
+                
                 # Save model
                 model_path = Path(args.output_model_dir) / f"{name}_best.joblib"
                 UT.save_model(gs.best_estimator_, model_path)
-                logger.info(f"Saved {model_name} to {model_path}")
+                mlflow.sklearn.log_model(
+                    sk_model=gs.best_estimator_,
+                    artifact_path=name,
+                    registered_model_name=f"tf_{name}"
+                )
 
-        # Save metrics to JSON
+        # Auto-select best model
+        best_model_name, best_metrics = max(
+            all_metrics.items(),
+            key=lambda x: x[1]["validation_metrics"]["f1_weighted"]
+        )
+        best_model_path = Path(args.output_model_dir) / f"{best_model_name}_best.joblib"
+        
+        # Tag and log best model
+        mlflow.set_tag("best_model", best_model_name)
+        mlflow.log_metric("best_model_f1", best_metrics["validation_metrics"]["f1_weighted"])
+        
+        # Save best model copy
+        UT.save_model(
+            UT.load_model(best_model_path),
+            Path(args.output_model_dir) / "best_model.joblib"
+        )
+        
+        logger.info(f"\n{'='*50}")
+        logger.info(f"BEST MODEL: {best_model_name}")
+        logger.info(f"F1 Score: {best_metrics['validation_metrics']['f1_weighted']:.3f}")
+        logger.info(f"Saved to: models/best_model.joblib")
+        logger.info(f"{'='*50}")
+
+        # Save metrics
         UT.save_json(all_metrics, args.metrics_file)
         mlflow.log_artifact(args.metrics_file)
-        logger.info(f"\n{'='*50}\nMetrics saved to {args.metrics_file}\n{'='*50}")
 
 if __name__ == "__main__":
     main()

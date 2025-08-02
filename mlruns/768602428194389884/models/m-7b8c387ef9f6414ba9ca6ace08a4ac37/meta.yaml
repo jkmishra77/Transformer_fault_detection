@@ -1,0 +1,10 @@
+artifact_location: file:///F:/Projects/Transformer/mlruns/768602428194389884/models/m-7b8c387ef9f6414ba9ca6ace08a4ac37/artifacts
+creation_timestamp: 1754168938359
+experiment_id: '768602428194389884'
+last_updated_timestamp: 1754168944141
+model_id: m-7b8c387ef9f6414ba9ca6ace08a4ac37
+model_type: null
+name: svm
+source_run_id: 8ddf92a474ef4692b3cfb88255fbb990
+status: 2
+status_message: null
