@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.py~
+*.so
+*.egg-info/
+.pytest_cache/
+
+# Environments
+.env/
+.venv/
+venv/
+.trans/
+
+# DVC (if not used)
+.dvc/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and outputs
+*.log
+*.tmp
