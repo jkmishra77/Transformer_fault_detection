@@ -13,7 +13,7 @@ venv/
 /.dvc/tmp/
 
 # Model outputs and metrics
-models/
+
 /metrics/
 
 # Data files (if you don’t track raw/processed with DVC)
@@ -34,3 +34,4 @@ Thumbs.db
 params.yaml
 manifest_features.json
 
+!models/.gitkeep
