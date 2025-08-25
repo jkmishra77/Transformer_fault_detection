@@ -10,12 +10,13 @@
 #python-dotenv>=0.5.1
 #streamlit
 #pandas
+# Core
 streamlit==1.32.0
 pandas==2.1.4
+numpy==1.26.2
 scikit-learn==1.4.0
 joblib==1.3.2
-numpy==1.26.2
-scikit-learn
+
+# Enhancements
 streamlit-extras
 tiktoken
-python-3.11
