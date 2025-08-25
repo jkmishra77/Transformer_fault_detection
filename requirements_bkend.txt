@@ -1,0 +1,25 @@
+# Core ML
+scikit-learn==1.6.1
+imbalanced-learn==0.13.0
+pandas==2.3.1
+numpy==2.2.6
+joblib==1.5.1
+
+# ML Experiment Tracking
+mlflow==3.1.4
+mlflow-skinny==3.1.4
+
+# Data Processing
+scipy==1.16.1
+opencv-python==4.12.0.88
+scipy==1.16.1
+
+# API & Web
+fastapi==0.116.1
+uvicorn==0.35.0
+requests==2.32.4
+
+# Utilities
+tqdm==4.67.1
+matplotlib==3.10.3
+seaborn==0.13.2
