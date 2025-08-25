@@ -1,12 +1,15 @@
 [server]
 headless = true
-enableCORS = false
-enableXsrfProtection = false
-port = 8501
+enableCORS = true  # Keep this enabled for security
+enableXsrfProtection = true  # Keep this enabled for security
+
 
 [browser]
 serverAddress = "0.0.0.0"
 gatherUsageStats = false
+port = 8501
+
+
 
 [runner]
 magicEnabled = false
