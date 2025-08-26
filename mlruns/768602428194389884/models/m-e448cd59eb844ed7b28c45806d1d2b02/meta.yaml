@@ -1,0 +1,10 @@
+artifact_location: file:///F:/Projects/Transformer/mlruns/768602428194389884/models/m-e448cd59eb844ed7b28c45806d1d2b02/artifacts
+creation_timestamp: 1756166574437
+experiment_id: '768602428194389884'
+last_updated_timestamp: 1756166580242
+model_id: m-e448cd59eb844ed7b28c45806d1d2b02
+model_type: null
+name: logreg
+source_run_id: 76353660941446ada12912f43595fb62
+status: 2
+status_message: null

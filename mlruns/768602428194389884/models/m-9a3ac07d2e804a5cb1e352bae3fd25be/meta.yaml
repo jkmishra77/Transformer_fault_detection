@@ -1,0 +1,10 @@
+artifact_location: file:///F:/Projects/Transformer/mlruns/768602428194389884/models/m-9a3ac07d2e804a5cb1e352bae3fd25be/artifacts
+creation_timestamp: 1756166370775
+experiment_id: '768602428194389884'
+last_updated_timestamp: 1756166382471
+model_id: m-9a3ac07d2e804a5cb1e352bae3fd25be
+model_type: null
+name: rf
+source_run_id: 306ca81e43d14f149399abbd8e0989b0
+status: 2
+status_message: null
